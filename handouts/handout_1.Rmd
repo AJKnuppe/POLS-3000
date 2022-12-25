@@ -1,0 +1,128 @@
+---
+title: "POLS 3000 Overview of Major Commands"
+output: html_document
+---
+
+In this handout, we use a data frame `df`: 
+
+```{r}
+# Create a toy data frame `df`:
+df <- data.frame(var1 = c("landline","Internet1","Internet2", "cell", "landline","Internet1","Internet2", "cell"), var2 = c(40,50,60,70,40,50,60,70), var3 = c(60,50,40,60,60,80,40,78), var4 = c("yes","yes","yes","yes","no","no","no","no"))
+
+# We have created:
+df # normally, we do not want to print an entire data frame, but this one is very small
+
+# Obtain a summary:
+summary(df)
+
+# Which variables are factor ones?
+class(df$var1)
+class(df$var2)
+class(df$var3)
+class(df$var4)
+```
+
+# `table()` function
+
+* Use to tabulate two categorical variables
+
+* `table()` function takes in the names of the variables that you want to tabulate 
+
+* Example 1: `table(df$var1, df$var2)`, i.e., arguments are the names of the variables that you want to tabulate: 
+
+* Using `table()` with continuous variables is not as informative, instead use `tapply()`
+
+```{r}
+table(df$var1, df$var2)
+
+## Make the table more informative: 
+addmargins(table(InformativeLabel1 = df$var1, InformativeLabel2 = df$var2))
+```
+
+* Example 2: `table(df$var1)` will simply return the frequencies of observations (i.e., rows) in each category of `var1`
+```{r}
+table(df$var1)
+```
+
+
+# `tapply()` function
+
+* Use to apply a function to a continuous variable across certain categories
+
+* Example 1: `tapply(df$var3, df$var1, mean)`. This code reads: calculate the average of var3 for each category of var1. 
+
+```{r}
+tapply(df$var3, df$var1, mean)
+```
+
+* Example 2: `tapply(df$var3, df$var4, quantile)`. This code reads: calculate the quantiles of var3 for each category of var4. 
+
+```{r}
+## Make the table more informative: 
+tapply(df$var3, df$var4, quantile)
+```
+
+
+# `subset()` function
+
+* Use to create smaller data frames that satisfy certain conditions
+
+* Takes in three arguments: 1) the name of the old data frame from which we will choose certain rows/columns; 2) the logical statement that specifies which rows to grab; 3) the logical statement that specifies which columns to grab
+
+* Example 1: `subset(df, subset = (var4=="no" | var1 == "Internet1"), select=c(var2, var3))`. This code reads: 1) take the old data frame `df`; 2) only grab the rows from `df` that either equal to "no" (var4) OR equal to "Internet" (var1); 3) only grab two columns: var2, var3
+
+```{r}
+df.new <- subset(df, subset = (var4=="no" | var1 == "Internet1"), select=c(var2, var3))
+
+summary(df.new)
+```
+
+
+* Example 2 (grabbing only rows): `subset(df, subset = (var4=="no" | var1 == "Internet"))`. This code reads: 1) take the old data frame `df`; 2) only grab the rows from `df` that either equal to "no" (var4) OR equal to "Internet" (var1)
+```{r}
+df.new1 <- subset(df, subset = (var4=="no" | var1 == "Internet1"))
+
+summary(df.new1)
+```
+
+
+* Example 3 (grabbing only columns): `subset(df, select=c(var2, var3))`. This code reads: 1) take the old data frame `df`; 2) only grab two columns: var2, var3
+```{r}
+df.new2 <- subset(df, select=c(var2, var3))
+
+summary(df.new2)
+```
+
+
+
+# `ifelse()` function
+
+* Use to recode variables
+
+* Takes in three arguments: 1) the logical statement; 2) the value to be assigned if the logical statement is TRUE; 3) the value to be assigned if the logical statement is FALSE
+
+* Example 1: `ifelse((var4=="no" | var1 == "Internet1"), 1, 0)`. This code reads: 1) evaluate whether an observation either has "no" in var4 OR has "Internet1" in var1; 2)  if TRUE, assign 1; 3) if FALSE, assign 0
+
+```{r}
+df$var5 <- ifelse((df$var4=="no" | df$var1 == "Internet1"), 1, 0)
+
+df 
+```
+
+
+* Example 2: `ifelse((var4=="no" | var1 == "Internet1"), "Good", "Bad")`. This code reads: 1) evaluate whether an observation either has "no" in var4 OR has "Internet1" in var1; 2)  if TRUE, assign "Good"; 3) if FALSE, assign "Bad""
+
+```{r}
+df$var6 <- ifelse((df$var4=="no" | df$var1 == "Internet1"), "Good", "Bad")
+
+df
+```
+
+* Example 3: we will create three as opposed to two categories. For instance, consider: `ifelse((df$var4=="no"), "Good", ifelse((df$var1 == "Internet1"), "Bad", NA)`. This code reads:  evaluate whether an observation  has "no" in var4, if TRUE, assign "Good", if FALSE evaluate whether an observation has "Internet1" in var1, if TRUE, assign "Bad", otherwise assign NA. 
+
+```{r}
+df$var6 <- ifelse((df$var4=="no"), "Good", 
+                  ifelse((df$var1 == "Internet1"), "Bad", NA))
+
+df
+```
