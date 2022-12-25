@@ -1,0 +1,106 @@
+##### POLS 3000 
+##### Week Uncertainty 2: SE and CIs
+##### Code is based on examples by Kosuke Imai
+
+
+##### ##### ##### ##### ##### ##### ##### ##### ##### ##### 
+#####                                                 ##### 
+#####       S.E., CIs, ATE in Experiments             ##### 
+#####       Section 7.1.5 of QSS                      #####
+
+STAR <- read.csv("STAR.csv")
+
+par(mfrow = c(1,2))
+hist(STAR$g4reading[STAR$classtype == 1], freq = FALSE, xlim = c(500, 900),
+     ylim = c(0, 0.01), main = "Small class",
+     xlab = "Fourth-grade reading test score")
+abline(v = mean(STAR$g4reading[STAR$classtype == 1], na.rm = TRUE), 
+       col = "red")
+
+hist(STAR$g4reading[STAR$classtype == 2], freq = FALSE, xlim = c(500, 900),
+     ylim = c(0, 0.01), main = "Regular class",
+     xlab = "Fourth-grade reading test score")
+abline(v = mean(STAR$g4reading[STAR$classtype == 2], na.rm = TRUE), 
+       col = "red")
+
+## estimate and standard error for small class
+## se = sqrt(var/n) = sd/sqrt(n)
+n.small <- sum(STAR$classtype == 1 & !is.na(STAR$g4reading))
+n.small
+est.small <- mean(STAR$g4reading[STAR$classtype == 1], na.rm = TRUE)
+est.small
+se.small <- sd(STAR$g4reading[STAR$classtype == 1], na.rm = TRUE) / sqrt(n.small)
+se.small
+
+## estimate and standard error for regular class
+n.regular <- sum(STAR$classtype == 2 & !is.na(STAR$classtype) & 
+                   !is.na(STAR$g4reading))
+n.regular
+est.regular <- mean(STAR$g4reading[STAR$classtype == 2], na.rm = TRUE)
+se.regular <- sd(STAR$g4reading[STAR$classtype == 2], na.rm = TRUE) / sqrt(n.regular)
+est.regular 
+se.regular
+
+alpha <- 0.05
+## 95% confidence intervals for small class
+##CI = (mean - z*SE, mean + z*SE)
+ci.small <- c(est.small - qnorm(1 - alpha / 2) * se.small, 
+              est.small + qnorm(1 - alpha / 2) * se.small)
+ci.small
+
+## 95% confidence intervals for regular class
+ci.regular <- c(est.regular - qnorm(1 - alpha / 2) * se.regular,
+                est.regular + qnorm(1 - alpha / 2) * se.regular)
+ci.regular
+
+### method 2: 
+ci.regular.v2 <- c(est.regular - 1.96 * se.regular,
+                est.regular + 1.96 * se.regular)
+ci.regular.v2
+
+### method 3: 
+ci.regular.v3 <- c(est.regular -  qnorm(0.975) * se.regular,
+                   est.regular +  qnorm(0.975) * se.regular)
+ci.regular.v3
+
+## difference-in-means estimator
+ate.est <- est.small - est.regular
+ate.est
+
+## standard error and 95% confidence interval
+## SE of the DiM = sqrt(SE1^2 + SE2^2)
+ate.se <- sqrt(se.small^2 + se.regular^2)
+ate.se
+
+ate.ci <- c(ate.est - qnorm(1 - alpha / 2) * ate.se,
+            ate.est + qnorm(1 - alpha / 2) * ate.se)
+ate.ci
+
+# difference-in-means estimator by using a t-test
+t.test(STAR$g4reading[STAR$classtype == 1], 
+       STAR$g4reading[STAR$classtype == 2])
+
+### Testing the null hypothesis of no difference between the readings scores  
+### of students assigned to small and regular classrooms
+
+# calculate the z-score for the DiM estimate (recall the formula for z-scores)
+z.ate.est <- (ate.est-0) / ate.se
+z.ate.est
+
+# Calculate the p-value associated with the z-score: this answers the question of 
+# how likely we are to observe this DiM estimate by chance alone. 
+
+# If the obtained p-value EXCEEDS the chosen level of alpha, we fail to reject the 
+# null hypothesis of no difference and deem the result "not statistically significant," 
+# i.e., the amount of time we'd observe the result by chance alone exceeds the desired 
+# amount of error (alpha). 
+
+# If the obtained p-value is BELOW the chosen level of alpha, we reject the 
+# null hypothesis of no difference and deem the result "statistically significant," 
+# i.e., the amount of time we'd observe the result by chance alone is lower than the 
+# desired amount of error (alpha). 
+
+# Here we select option "lower.tail = F", because the z-score is above the mean. 
+# For negative z-scores, use "lower.tail = T"
+p.ate.est <- pnorm(z.ate.est, lower.tail = F) 
+p.ate.est
