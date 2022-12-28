@@ -1,0 +1,204 @@
+---
+title: "POLS 3000 Problem Set 2"
+author: "Pechenkina"
+date: "September 2022"
+output: html_document
+---
+
+
+# Section A: Indiscriminate Violence and Insurgency 
+
+In this exercise, we analyze the relationship between indiscriminate
+violence and insurgent attacks using data about Russian artillery fire
+in Chechnya from 2000 to 2005. 
+
+Each observation in the data set represents a Chechen village.
+
+This exercise is based on: Lyall, J. 2009. “[Does Indiscriminate Violence 
+Incite Insurgent Attacks?: Evidence from 
+Chechnya.](http://dx.doi.org/10.1177/0022002708330881)” 
+ *Journal of Conflict Resolution* 53(3): 331–62. Please read the abstract of the study.
+    
+Many scholars have argued that
+indiscriminate violence against civilians increases insurgent attacks by creating more
+cooperative relationships between citizens and insurgents.  Others
+believe that indiscriminate violence can be effective in suppressing
+insurgents' activities. The research question in this study is: How does indiscriminate shelling of a locality influence the number of insurgent attacks originating from that locality? The sudy uses data from the Chechen War in which Russian soldier were fighting Chechen insurgents. The important aspect of these data is that Russian soldiers shelled the villages while they were drunk, that is they were not strategically selecting which villages to target. 
+
+The names and
+descriptions of variables in the data file `chechen.csv` are:
+
+ Name                 Description
+ -------------------- ----------------------------------------------------------
+ `village`            Name of Chechnya village
+ `groznyy`            Variable indicating whether a village is in
+                      Groznyy (equal to 1) or not (equal to 0) 
+ `fire`               Whether Russians struck a village with artillery fire 
+                      (equal to 1) or not (equal to 0)
+ `deaths`             Estimated number of individuals killed during Russian artillery fire 
+ `preattack`          The number of insurgent attacks before Russian artillery fire 
+ `postattack`         The number of insurgent attacks after Russian artillery fire 
+
+## Question 1 (Theory)
+
+In this study, Lyall compares the frequency of insugent attacks in villages that were attacked by Russian artillery fire to villages that were not attacked.   
+
+Try to answer in a single word or in a short phrase.
+
+1) Is this an observational study or is it an experiment? 
+
+2) What is the treatment in this study? 
+
+3) What is the outcome/response variable in this study? 
+
+4) What is the unit of observation in this study? That is, what does each row in the data set represent? 
+
+**The unit of observation (unit of analysis) is village.**
+
+5) What subjects represent the treated group in this study? 
+
+6) What subjects represent the control group in this study? 
+
+7) Lyall collected these data during the civil war in Chechnya, while being embedded with a Russian battalion. 
+He observed that Russian soldiers shelled villages while being drunk. This means that shelling was not based on any
+strategic consideration by the soldiers and was essentially random. Is this a good or a bad thing for causal inference? Why? 
+
+8) Conceptually, how can you obtain a difference-in-means in the number of insurgent attacks after the artillery fire between treated and control units? 
+
+9) Conceptually, how can you obtain a comparison of the treated units before and after the artillery fire? 
+
+10) Conceptually, how can you obtain a difference-in-differences in the number of insurgent attacks between treated and control units? 
+
+## Question 2
+  
+1) Load data set `chechen.csv` into RStudio.
+
+```{r}
+library(foreign)
+chechen <- read.csv("chechen.csv")
+```
+
+
+2) Obtain a summary of the data.
+
+```{r}
+
+```
+
+3) Which variables contain missing values? 
+
+4) How many villages that were struck with artillery fire were also located in Groznyy? Try tabulation of two variables, adding the sum of row and column values (see Handout for an aexample, use `addmargins()`). In one sentence, describe how many villages were located in Groznyy, the capital region of Chechnya. 
+
+5) *Taking into account the missing data* (see section 3.2, week 5b slides), how many deaths did the villages that were and were not struck with artillery fire experience? Try tabulation. In one sentence, describe what patterns you observe regarding what type of information is missing.
+
+6) Obtain the quartiles *for the available data* in the estimated number of individuals killed during the artillery fire (see section 3.2, slides for week 4, 5b).
+
+7) Display the average distance from the mean of the number of insurgent attacks before Russian artillery fire (section 2.6, slides for week 4). 
+
+8) Calculate the average number of deaths in the villages located in Groznyy and those outside of Groznyy (sections 2.4.2, 3.3.3, Handout). Try using `tapply()`. Summarize what you find in one sentence.
+
+
+```{r}
+
+```
+   
+
+
+## Question 3
+
+In this question, we will investigate in more detail whether indiscriminate fire affected the number of insurgent attacks in Chechen villages. 
+
+1) Use strategy 1 (difference-in-means or cross-section comparison) to answer this question: What is the difference in the average number of insurgent attacks after Russian artillery fire between the villages that were hit by artillery fire and those that were not?  (Section 2.4; slides for week 4; code for week 4 lecture.)
+  
+2)  In one sentence, interpret the result of the difference-in-means.
+  
+3) Use strategy 2 (before-and-after comparison). Calculate the difference in the number of insurgent attacks before and after the Russian artillery fire. Among the villages shelled by Russians, did the number of insurgent attacks increase after the artillery fire?  (Section 2.5; slides for week 4; code for week 4 lecture.)
+
+4) Give a substantive interpretation of the result of before-and-after comparison. 
+  
+
+5) Use strategy 3 to calculate the difference-in-differences between between the villages that were hit by artillery fire and those that were not.  (Section 2.5; slides for week 4; code for week 4 lecture.)
+  
+6)  Give a substantive interpretation of the result of the difference-in-differences comparison.
+  
+7) Extra credit (1%): What is the advantage of difference-in-differences in comparison to difference-in-means?  What is the advantage of difference-in-differences in comparison to before-and-after?
+
+## Answer 3
+
+```{r}
+
+```
+
+
+
+# Section B: UN Voting 
+
+Like legislators in the US Congress, the member states of the United
+Nations (UN) are politically divided on many issues such as trade,
+nuclear disarmament, and human rights.  During the Cold War, countries
+in the UN General Assembly tended to split into two factions: one led
+by the capitalist United States and the other by the communist Soviet
+Union.  In this exercise, we will analyze how states' ideological
+positions, as captured by their votes on UN resolutions, have changed
+since the fall of communism.
+
+This exercise is based on Michael A. Bailey, Anton Strezhnev, and 
+Erik Voeten. "Estimating Dynamic State Preferences from United Nations Voting Data."
+ *Journal of Conflict Resolution*, August 2015.
+
+The data is called `unvoting.csv` and the variables are:
+
+ Name                 Description
+ -------------------- ----------------------------------------------------------
+ `CountryName`        The name of the country
+ `idealpoint`         Its estimated ideal point
+ `Year`               The year for which the ideal point is estimated
+ `PctAgreeUS`         The percentage of votes that agree with the US on the same issue
+ `PctAgreeRUSSIA`     The percentage of votes that agree with Russia/the Soviet Union on the same issue
+
+
+In the analysis that follows, we measure state preferences in two
+ways. 
+
+First, we can use the percentage of votes by each country that
+coincide with votes on the same issue cast by the two major Cold War
+powers: the United States and the Soviet Union. For example, if a
+country voted for ten resolutions in 1992, and if its vote matched the
+United States's vote on exactly six of these resolutions, the variable
+`PctAgreeUS` in 1992 would equal 60 for this country. 
+
+Second, we can also measure state preferences in terms of numerical ideal points.  
+These ideal points capture what international relations scholars have called
+countries' *liberalism* on issues such as political freedom,
+democratization, and financial liberalization. The two measures are
+highly correlated, with larger (more liberal) ideal points
+corresponding to a higher percentage of votes that agree with the US.
+
+## Question 4
+
+
+1) Load data set `unvoting.csv' into RStudio.
+
+```{r}
+un <- read.csv("unvoting.csv")
+```
+
+
+2) Obtain a summary of the data. 
+
+3) Is the variable `idealpoint` a categorical/factor or a continuous variable? What method is more appropriate to visualize the distribution of `idealpoint`: a barplot or a histogram? (Sections 2.2.5, 3.3.1, 3.3.2, week 5b slides) 
+
+4) Given your answer to the previous question, use the appropriate method to visualize two distributions of `idealpoint` (1) in year 1980 and (2) in year 2002 (create two figures, preferably, side by side)
+
+5) In one sentence, what changes in the distribution of `idealpoint` do you observe over time? (1980 = eleven years before the collapse of the Soviet Union; 2002 =  eleven years after)
+
+6) Use a visualization method to display whether the variable `idealpoint` contained any outliers in year 1980 and in year 2002 Summarize your findings (section 3.3.3;  week 5b slides). 
+
+
+## Answer 4
+
+```{r}
+
+
+
+```
