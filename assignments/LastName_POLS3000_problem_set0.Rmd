@@ -2,6 +2,9 @@
 title: "Getting Started with R, R Studio, and R Markdown"
 author: "POLS 3000: Introduction to Political Analysis (Prof. Knuppe, Spring 2023)"
 date: 2023-01-09
+output:
+  pdf_document: default
+  html_document: default
 summary: >-
   A guide to installing and setting up the software required for
   POLS 3000.
