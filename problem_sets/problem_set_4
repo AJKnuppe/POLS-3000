@@ -1,0 +1,148 @@
+---
+title: "POLS 3000: Problem set 3"
+author: "[FirstName LastName]"
+date: "[date]"
+output:  html_document
+---
+
+
+**Election and Conditional Cash Transfer Program in Mexico**
+
+In this exercise, we analyze the data from a study that seeks to estimate the electoral impact of 'Progresa', Mexico's *conditional cash transfer program* (CCT program). This exercise is based on the following article: Ana de la O. (2013). '[Do Conditional Cash Transfers Affect Voting Behavior](http://onlinelibrary.wiley.com/doi/10.1111/j.1540-5907.2012.00617.x/abstract)? Evidence from a Randomized Experiment in Mexico.' and Kosuke Imai, Gary King, and Carlos Velasco. (2015). '[Do Nonpartisan Programmatic Policies Have Partisan Electoral Effects? Evidence from Two Large Scale Randomized Experiments](https://gking.harvard.edu/publications/do-nonpartisan-programmatic-policies-have-partisan-electoral-effects-evidence-two).'
+  
+The original study relied on a randomized evaluation of the CCT program in which eligible villages were randomly assigned to receive the program either 21 (*Early Progresa*) or 6 months (*Late Progresa*) before the 2000 Mexican presidential election. The author of the original study hypothesized that the CCT program would mobilize voters, leading to an increase in turnout and support for the incumbent party (PRI in this case). The analysis was based on a sample of precincts that contain at most one participating village in the evaluation. 
+
+Each observation in the data represents a precinct, and for each precinct the file contains information about its treatment status, the outcomes of interest, socioeconomic indicators, and other precinct characteristics.
+
+The data we analyze are available as the CSV file `progresa.csv`. The names and descriptions of variables in the data set are:
+
+ Name                 Description
+ -------------------- ---------------------------------------------------------
+ `treatment`          Whether an electoral precinct contains a village where households received Early *Progresa*
+ `pri2000s`           PRI votes in the 2000 election as a share of precinct population above 18
+ `pri2000v`           Official PRI vote share in the 2000 election
+ `t2000`              Turnout in the 2000 election as a share of precinct population above 18; this is the turnout rate used by the researcher
+ `t2000r`             Official turnout in the 2000 election
+ `pri1994`            Total PRI votes in the 1994 presidential election
+ `pan1994`            Total PAN votes in the 1994 presidential election 
+ `prd1994`            Total PRD votes in the 1994 presidential election
+ `pri1994s`           Total PRI votes in the 1994 election as a share of precinct population above 18
+ `pan1994s`           Total PAN votes in the 1994 election as a share of precinct population above 18
+ `prd1994s`           Total PRD votes in the 1994 election as a share of precinct population above 18
+ `pri1994v`           Official PRI vote share in the 1994 election
+ `pan1994v`           Official PAN vote share in the 1994 election
+ `prd1994v`           Official PRD vote share in the 1994 election
+ `t1994`              Turnout in the 1994 election as a share of precinct population above 18
+ `t1994r`             Official turnout in the 1994 election
+ `votos1994`          Total votes cast in the 1994 presidential election 
+ `avgpoverty`         Precinct Avg of Village Poverty Index
+ `pobtot1994`         Total Population in the precinct
+ `villages`           Number of villages in the precinct
+
+
+
+## Question 1
+
+1. What is the research question in this study? 
+
+2. What does each row of the data set represent? = What is the unit of observation in this study?  
+
+3. What are the main dependent variables in this study? 
+
+4. What is the main independent variable in this study? What do its values represent?  
+
+5. Is this an experiment or an observational study? Explain. 
+
+6. Is it desirable for the control and treated groups to be different or similar on average? Explain why. 
+
+7. How can you tell whether control and treated groups will be on average different or similar in this study? 
+
+8. Using a correlation, what information could we obtain about the relationship between the independent and dependent variables in this study? 
+
+9. Using a linear regression, what information could we obtain about the relationship between the independent and dependent variables in this study? 
+
+10. Does this study have high internal validity? Explain why. 
+
+11. Does this study have high external validity? Explain why. 
+
+
+
+## Question 2
+
+1. Load the data set `progresa.csv` into RStudio
+
+
+2. Obtain a summary. Which variables have missing values? 
+
+
+
+3. Estimate the difference-in-means of the CCT program on turnout by comparing the average turnout used in the study (`t2000`) in the 'treated' (Early *Progresa*) precincts and in 'control' (Late     *Progresa*) precincts (chapter 2). 
+
+
+4. Summarize your finding in Question 2.3 in one sentence. 
+
+
+
+5. Use a linear regression to estimate the effect of treatment on turnout used in the study (`t2000`) (chapter 4; slides from week 8)
+
+
+6. Summarize your finding in Question 2.5 in one sentence. In particular, interpret the intercept, the slope, and calculate the predicted value of the dependent variable for treated observations. 
+
+
+7. Compare the DiM in Question 2.3 to the slope coefficient in Question 2.5. 
+
+
+
+8. <span style="color:blue">Extra credit 1%</span>: Calculate the slope coefficient in Question 2.5 "by hand" (see slides from week 8 for the formula): 
+
+
+
+9. Calculate a correlation coefficient between the turnout rate (`t2000`) and the official turnout rate (`t2000r`) using the R command. 
+
+
+10. <span style="color:blue">Extra credit 1%</span>: calculate the correlation coefficient between the turnout rate (`t2000`) and the official turnout rate (`t2000r`) "by hand" (see slides from weeks 7 and 8 for the formula)
+
+
+
+11. Interpret the obtained correlation coefficient between the turnout rate (`t2000`) and the official turnout rate (`t2000r`) in one sentence. 
+
+
+
+12. In this question, we examine the outcome variables `t2000` and `t2000r` used in the previous analyses.  Create two figures (a total of 4 boxplots), arranged side-by-side. Add informative labels and set y-limits to facilitate comparison where appropriate (slides from week 5; section 3.3.3).
+
+
+- First boxplot figure: compare the distributions of the 2000 turnout rate (measured as a share of the voting age population) (`t2000`) between the treatment and control groups.  
+
+- Second boxplot figure: compare the distributions of the official 2000 turnout rate (measured as a share of the voting age population) (`t2000r`) between the treatment and control groups.  
+
+
+
+
+13. Comment on the patterns you observe between treated and control observations by answering the following questions: In what units are the variables `t2000` and `t2000r` measured? Are any values appear nonsensical? Are these observations concentrated in either treatment or control group?
+
+
+
+14. Now, we examine how the predictions change, using the official turnout rate `t2000r` (as a share of the registered voters) as the outcome variable rather than the turnout rate used in the original analysis (as a share of the voting age population). Estimate the difference-in-means of the CCT program on turnout by comparing the official turnout rate (`t2000r`) in the 'treated' (Early *Progresa*) precincts and in 'control' (Late *Progresa*) precincts (chapter 2). 
+
+
+15. Summarize your finding in Question 2.14 in one sentence. 
+
+
+16. Regress the official turnout rate `t2000r` on the CCT program using a linear model (chapter 4; slides from week 8).
+
+
+17. Compare the DiM in Question 2.14 to the slope coefficient in Question 2.16. Compare the DiM and slope obtained using the official turnout rate (2.14, 2.16) to the DiM and slope obtained using the turnout rate employed in the study (2.3, 2.5).
+
+
+
+18. Interpret the results obtained in 2.16 by discussing the intercept, slope, and the predicted value of the dependent variable for treated units. Compare those results to your findings in Question 2.5. 
+  
+
+  
+19. Interpret the model fit (adjusted R-squared) for the regression you estimated in 3.3 (chapter 4, slides from week 8). 
+
+
+20. <span style="color:blue">Extra credit 1%</span>: Create and store as part of the data frame a categorical variable `t2000.categories`. This variable should equal 0 if `t2000` $<$ 25\%; 1 if `t2000` is between 25 and 49\%; 2 if `t2000` is between 50 and 74\%; 3 if `t2000` is 75\% or above. Use indexing or `ifelse()`  function (Handout).
+
+
+21. <span style="color:blue">Extra credit 2%</span>: Use a `for(){}` loop and `if(){else if(){}}` statements to create an identical copy of `t2000.categories` variable. Name this new variable `t2000.categories.check`. Summarize both variables and calculate the interquartile ranges to ensure you have created an exact copy. (section 4.1.2).
