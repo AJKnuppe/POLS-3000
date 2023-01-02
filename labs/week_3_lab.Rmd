@@ -1,0 +1,116 @@
+Ex 1: Design a randomized control trial (RCT) and an observational study that would test the following hypothesis:
+ 
+College graduates are more likely to become terrorist operatives than less educated individuals.  
+
+ 
+a. 	What is the outcome (=dependent) variable in this hypothesis?
+ 
+ 
+ 
+b. 	What is the treatment (=independent) variable in this hypothesis?
+ 
+ 
+ 
+c. 	What subjects will make up the treatment group (=treated units)?
+ 
+ 
+ 
+d. 	What subjects will make up the control group (=control units)?
+ 
+ 
+ 
+e. 	In the RCT, how will you decide who is in the treatment vs. the control group?
+ 
+ 
+ 
+f.  	In the observational study, how will you decide who is in the treatment vs. the control group?
+ 
+ 
+ 
+g. 	Will you be able to make causal claims in the RCT study? Why or why not?
+ 
+ 
+ 
+h. 	Will you be able to make causal claims in the observational study? Why or why not?
+ 
+ 
+ 
+i.  	How would you measure whether the treatment produces the hypothesized effect in the RCT study?
+
+
+
+j. How would you measure whether the treatment produces the hypothesized effect in the observational study?
+ 
+
+
+k.  	To understand whether subjects exhibit the placebo effect, what would you do?
+ 
+What is it about college education that can increase one’s probability of joining a TO?
+
+ 
+l. 	To prevent subjects from exhibiting the Hawthorne effect, what would you do?
+ 
+ 
+ 
+m.  What does it mean for the  RCT to be single-blind vs. double-blind? 
+
+
+
+n. How would you design a single-blind or a double-blind RCT in this case? 
+  
+ 
+ 
+o. 	Is the RCT version of the study ethical? Do you think the USU Institutional Review Board (whose objective is to protect the rights of human subjects involved in research) would allow this RCT to be fielded? Why?
+
+
+
+Ex 2: Design a randomized control trial (RCT) and an observational study that would test the following hypothesis:
+ 
+Cities with female mayors tend to have a lower unemployment rate.    
+ 
+ 
+What is the outcome (=dependent) variable in this hypothesis?
+ 
+ 
+ 
+What is the treatment (=independent) variable in this hypothesis?
+ 
+ 
+ 
+What subjects will make up the treatment group (=treated units)?
+ 
+ 
+ 
+d. 	What subjects will make up the control group (=control units)?
+ 
+ 
+ 
+e. 	In the RCT, how will you decide who is in the treatment vs. the control group?
+ 
+ 
+ 
+f.  	In the observational study, how will you decide who is in the treatment vs. the control group?
+
+
+
+g. 	Will you be able to make causal claims in the RCT study? Why or why not?
+ 
+ 
+ 
+h. 	Will you be able to make causal claims in the observational study? Why or why not?
+ 
+ 
+ 
+i.  	How would you measure whether the treatment produces the hypothesized effect in the RCT study?
+
+
+
+j. How would you measure whether the treatment produces the hypothesized effect in the observational study?
+ 
+
+
+k.  	To understand whether subjects exhibit the placebo effect, what would you do?
+ 
+ 
+ 
+l. 	To prevent subjects from exhibiting the Hawthorne effect, what would you do?
