@@ -1,0 +1,41 @@
+---
+title: "Getting Started with R, R Studio, and R Markdown"
+author: "POLS 3000: Introduction to Political Analysis (Prof. Knuppe, Spring 2023)"
+date: 2023-01-09
+summary: >-
+  A guide to installing and setting up the software required for
+  POLS 3000.
+---
+  
+## Installing R and RStudio
+  
+In this problem set, we're going to get R, RStudio, and R Markdown set up on your computer. To get started, follow these steps: 
+
+1. Download and install the most recent version of [R][]. There are versions available for the Windows, Mac, and Linux operating systems. On a Windows machine, you will want to install using the `R-x.y.z-win.exe` file where `x.y.z` is a version number. On a Mac, you will want to install using the `R-x.y.z.pkg` file that is notarized and signed. 
+
+2. With R installed, download and install [RStudio][]. RStudio is a type of "integrated development environment" or IDE designed for R. It makes working with R considerably easier and is available for most platforms. It is also free. 
+
+3. Install the packages we will use throughout the semester. To do this, either type or copy and paste each of the following lines of code into the "Console" in RStudio (lower left panel by default). Make sure you do this separately for each line. If you are asked if you want to install any packages from source, type "no". Note that the symbols next to `my_package` are a less than sign `<` followed by a minus sign `-` with no space between them. 
+
+```{r, eval = FALSE}
+my_packages <- c("tidyverse", "usethis", "devtools", "learnr", "tinytex")
+install.packages(my_packages, repos = "http://cran.rstudio.com")
+remotes::install_github("kosukeimai/qss-package", build_vignettes = TRUE)
+```
+
+4. For some things in the course, we'll need produce PDFs from R and that requires something called LaTeX. If you've never heard of that, it's completely fine and you should just run the following two lines of R code:
+  
+```{r, eval = FALSE}
+install.packages('tinytex')
+tinytex::install_tinytex()  # install TinyTeX
+```
+
+## Extra Credit
+
+### Setup a GitHub account
+
+Next, you can setup a [GitHub][] account. You can think of GitHub as similar to Dropbox or Google Drive for your git projects ("repositories") where everything is public by default. Since you might use this account to interact with potential employers in the future, you should pick a professional username (e.g., mine is `AJKnuppe`)
+
+[R]: https://cloud.r-project.org/
+[RStudio]:https://rstudio.com/
+[Github]: https://github.com/join
